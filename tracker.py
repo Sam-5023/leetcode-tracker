@@ -47,7 +47,7 @@ def fetch_user(username):
     ]
     solved_today = list(dict.fromkeys(solved_today_list))
 
-    return total, solved_today
+    return total, solved_today, len(solved_today)
 
 def main():
     with open("records.json") as f:
