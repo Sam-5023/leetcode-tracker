@@ -57,7 +57,7 @@ def main():
 
     for user in USERNAMES:
         try:
-            total, solved_today = fetch_user(user)
+            total, solved_today, count_today = fetch_user(user)
         except Exception as e:
             print(f"Failed for {user}: {e}")
             continue
@@ -65,9 +65,10 @@ def main():
         records.setdefault(user, {})
         records[user][date_str] = {
             "total_solved": total,
+            "count_today": count_today,
             "problems_today": solved_today
         }
-        print(f"{user}: total={total}, today={solved_today}")
+        print(f"{user}: total={total}, today={count_today}")
 
     with open("records.json", "w") as f:
         json.dump(records, f, indent=2)
