@@ -41,10 +41,11 @@ def fetch_user(username):
     )
 
     today = datetime.now(timezone.utc).date()
-    solved_today = [
+    solved_today_list = [
         sub["title"] for sub in data["recentAcSubmissionList"]
         if datetime.fromtimestamp(int(sub["timestamp"]), tz=timezone.utc).date() == today
     ]
+    solved_today = list(dict.fromkeys(solved_today_list))
 
     return total, solved_today
 
